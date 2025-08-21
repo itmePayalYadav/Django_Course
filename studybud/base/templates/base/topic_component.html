@@ -1,0 +1,26 @@
+<h4 class="mb-3">Browse Topics</h4>
+<div class="card shadow-sm">
+  <div class="card-header bg-light fw-bold">Topics</div>
+  <ul class="list-group list-group-flush">
+    <!-- All Topics -->
+    <li class="list-group-item py-2">
+      <a href="{% url 'home' %}" class="d-block text-decoration-none text-dark">
+        All
+      </a>
+    </li>
+
+    <!-- Dynamic Topics -->
+    {% for topic in topics %}
+    <li class="list-group-item py-2">
+      <a
+        href="{% url 'home' %}?q={{ topic.name }}"
+        class="d-block text-decoration-none text-dark"
+      >
+        {{ topic.name }}
+      </a>
+    </li>
+    {% empty %}
+    <li class="list-group-item text-muted">No topics available</li>
+    {% endfor %}
+  </ul>
+</div>

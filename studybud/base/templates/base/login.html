@@ -1,0 +1,38 @@
+{% extends 'layout.html' %} {% block content %}
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="height: 800px"
+>
+  <div class="card shadow p-4" style="width: 500px">
+    <h3 class="text-center mb-4">Login</h3>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          placeholder="Enter Username"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Enter Password"
+        />
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">Login</button>
+      </div>
+    </form>
+    <div class="d-flex justify-content-center align-items-center py-2 mt-3">
+      <p class="mb-0 me-2 text-muted">Don’t have an account?</p>
+      <a href="{% url 'register' %}" class=""> Create New Account </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

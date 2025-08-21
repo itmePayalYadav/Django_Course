@@ -1,0 +1,45 @@
+<!-- Rooms list -->
+<div class="d-flex flex-column gap-3">
+  {% for room in rooms %}
+  <div class="card shadow-sm border-0">
+    <div
+      class="card-header bg-light d-flex justify-content-between align-items-center"
+    >
+      <a href="{% url 'profile' room.host.id %}">
+        <span class="fw-bold text-dark">@{{ room.host.username }}</span>
+      </a>
+      <small class="text-muted">{{ room.topic.name }}</small>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title mb-2">
+        <a href="{% url 'room' room.id %}" class="text-decoration-none"
+          >{{ room.name }}</a
+        >
+      </h5>
+      <p class="card-text text-muted mb-3">
+        {{ room.description|default:"No description provided." }}
+      </p>
+
+      <!-- Action buttons -->
+      {% if request.user == room.host %}
+      <div class="d-flex gap-2">
+        <a
+          href="{% url 'update-room' room.id %}"
+          class="btn btn-sm btn-outline-primary"
+        >
+          <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a
+          href="{% url 'delete-room' room.id %}"
+          class="btn btn-sm btn-outline-danger"
+        >
+          <i class="bi bi-trash3"></i> Delete
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% empty %}
+  <div class="alert alert-warning">No rooms found.</div>
+  {% endfor %}
+</div>

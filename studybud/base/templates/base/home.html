@@ -1,0 +1,23 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="row">
+  <!-- Sidebar -->
+  <div class="col-12 col-lg-3">{% include 'base/topic_component.html' %}</div>
+
+  <!-- Main content -->
+  <div class="col-12 col-lg-6">
+    <!-- Create Room button -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">{{ room_count }} Rooms Available</h5>
+      <a href="{% url 'create-room' %}" class="btn btn-success">
+        + Create Room
+      </a>
+    </div>
+    {% include 'base/feed_component.html' %}
+  </div>
+
+  <!-- Recent content -->
+  <div class="col-12 col-lg-3">
+    {% include 'base/activity_component.html' %}
+  </div>
+</div>
+{% endblock %}
