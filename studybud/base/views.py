@@ -6,7 +6,7 @@ from django.contrib import  messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Topic, Message
-from .forms import RoomForm
+from .forms import RoomForm, UserForm
 from django.contrib.auth.decorators import login_required
 
 # Auth View
@@ -95,9 +95,16 @@ def userProfile(request, pk):
     return render(request, 'base/profile.html', context)
 
 @login_required(login_url="/login/")
-def updateProfile(request, pk):
-    context = {}
-    return redirect(request, 'base/update_user.html', context)
+def updateProfile(request):
+    user = request.user
+    form = UserForm(instance=user) 
+    if request.method == 'POST':
+        form = UserForm(request.POST,  instance=user) 
+        if form.is_valid():
+            form.save()
+            return redirect('profile', pk=user.id)
+    context = {'form': form}
+    return render(request, 'base/update_user.html', context)
 
 @login_required(login_url="/login/")
 def create_room(request):

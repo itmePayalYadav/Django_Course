@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} {% block content %}
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="height: 800px"
+>
+  <div class="card shadow p-4" style="width: 500px">
+    <h3 class="text-center mb-4">Edit Your Profile</h3>
+    <form method="POST" action="">
+      {% csrf_token %} {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label">{{field.label}}</label>
+        {{ field }}
+      </div>
+      {% endfor %}
+      <div class="d-flex gap-2 justify-content-end">
+        <a href="{% url 'home' %}" class="btn btn-secondary btn">Cancel</a>
+        <button type="submit" class="btn btn-primary btn">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
