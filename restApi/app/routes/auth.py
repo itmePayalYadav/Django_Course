@@ -27,3 +27,4 @@ def loginUser(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Sessi
         "access_token": accessToken,
         "token_type": "bearer"
     }
+    
