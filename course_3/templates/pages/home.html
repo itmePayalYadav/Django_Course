@@ -1,0 +1,46 @@
+{% extends "layout/base.html" %} {% block content %}
+<div class="container">
+  <div class="d-flex align-content-end justify-content-end">
+    <a
+      href="{% url 'article-create' %}"
+      class="text-decoration-none text-reset"
+    >
+      <button class="btn btn-primary my-3">Create Article</button>
+    </a>
+  </div>
+
+  <div class="row g-4">
+    {% for article in objects %}
+    <div class="col-md-4 col-lg-3 mb-5">
+      <a
+        href="{% url 'article-detail' article.id %}"
+        class="text-decoration-none text-reset"
+      >
+        <div class="card h-100 shadow-lg border-0">
+          <div class="card-header bg-secondary text-white">
+            <h5 class="card-title mb-0">{{ article.title }}</h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text text-muted">
+              {{ article.content|truncatewords:20 }}
+            </p>
+          </div>
+        </div>
+      </a>
+      <div class="card-footer d-flex justify-content-between bg-secondary p-2">
+        <a href="{% url 'home' %}" class="btn btn-sm btn-primary"
+          ><i class="bi bi-pencil-square"></i> Update</a
+        >
+        <a href="{% url 'home' %}" class="btn btn-sm btn-danger"
+          ><i class="bi bi-trash"></i> Delete</a
+        >
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center">
+      <p class="text-muted fs-5">No articles available.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
