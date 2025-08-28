@@ -3,9 +3,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ArticleForm
 
-def articles_detail_view(request, pk):
-    if pk is not None:
-        article_obj = get_object_or_404(Article, pk=pk) 
+def articles_detail_view(request, slug):
+    if slug is not None:
+        article_obj = get_object_or_404(Article, slug=slug) 
     context = {
         "object":article_obj
     }

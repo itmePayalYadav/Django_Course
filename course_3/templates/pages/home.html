@@ -11,9 +11,9 @@
 
   <div class="row g-4">
     {% for article in objects %}
-    <div class="col-md-4 col-lg-3 mb-5">
+    <div class="col-md-5 col-lg-3 mb-5">
       <a
-        href="{% url 'article-detail' article.id %}"
+        href="{% url 'article-detail' article.slug %}"
         class="text-decoration-none text-reset"
       >
         <div class="card h-100 shadow-lg border-0">
