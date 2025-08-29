@@ -99,6 +99,13 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a
+                  class="nav-link {% if request.resolver_match.url_name == 'recipt-list' %}active{% endif %}"
+                  href="{% url 'recipe-list' %}"
+                  >Recipts</a
+                >
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
               </li>
               {% if not request.user.is_authenticated %}

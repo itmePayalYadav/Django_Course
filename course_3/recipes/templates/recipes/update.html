@@ -1,0 +1,58 @@
+{% extends "layout/base.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow border-0 rounded-3">
+        <!-- Header -->
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Update Recipe</h4>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body p-4">
+          <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            <!-- Error Message -->
+            {% if error %}
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+            >
+              {{ error }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+            {% endif %}
+
+            <!-- Loop through form fields -->
+            {% for field in form %}
+            <div class="mb-3">
+              <label class="form-label fw-semibold">{{ field.label }}</label>
+              {{ field }} {% if field.errors %}
+              <div class="text-danger small">{{ field.errors|striptags }}</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+
+            <!-- Footer -->
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <!-- Cancel Button (redirects without submitting) -->
+              <a href="{% url 'recipe-list' %}" class="btn btn-secondary">
+                Cancel
+              </a>
+
+              <!-- Save Button -->
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

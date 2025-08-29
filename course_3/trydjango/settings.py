@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'articles'
+    'articles',
+    'recipes'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'trydjango.wsgi.application'
+
+
+LOGIN_URL = '/accounts/login/'
 
 
 # Database

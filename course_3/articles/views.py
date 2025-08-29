@@ -1,7 +1,7 @@
 from articles.models import Article
+from .forms import ArticleForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ArticleForm
 
 def articles_detail_view(request, slug):
     if slug is not None:
@@ -9,9 +9,9 @@ def articles_detail_view(request, slug):
     context = {
         "object":article_obj
     }
-    return render(request, "pages/articles/detail.html", context)
+    return render(request, "articles/detail.html", context)
 
-@login_required(login_url='/accounts/login/')
+@login_required
 def articles_create_view(request):
     form = ArticleForm
     context = {
@@ -25,4 +25,19 @@ def articles_create_view(request):
             context['form'] = ArticleForm()
             if obj:
                 return redirect('home')
-    return render(request, "pages/articles/create.html", context)
+    return render(request, "articles/create.html", context)
+
+@login_required
+def articles_update_view(request, id):
+    obj = get_object_or_404(Article, id=id)
+    print(obj)
+    form = ArticleForm(request.POST or None, instance=obj)
+    context = {
+        "form":form,
+        "object":obj
+    }
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    return render(request, "articles/update.html", context) 
+

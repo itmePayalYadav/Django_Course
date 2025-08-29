@@ -1,10 +1,8 @@
 import random
-from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.utils.text import slugify
-
-User = settings.AUTH_USER_MODEL
+from django.contrib.auth.models import User
 
 class ArticleQuerySet(models.QuerySet):
     def search(self, query=None):
