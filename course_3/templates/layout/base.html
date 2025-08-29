@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Project</title>
+    <title>{% block title %}Blog Project{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -35,26 +35,44 @@
         font-family: "Poppins", sans-serif;
         display: flex;
         flex-direction: column;
+        background-color: #fdfdfd;
       }
 
       main {
-        flex: 1; /* Take remaining space */
+        flex: 1;
+        padding-top: 20px;
       }
 
       footer {
         background-color: #f8f9fa;
         padding: 15px 0;
         text-align: center;
-        border-top: 1px solid #ddd;
+        border-top: 1px solid #e5e5e5;
+        font-size: 0.9rem;
+      }
+
+      .navbar-brand {
+        font-weight: 600;
+        color: #fff !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #fff !important;
+        margin-right: 10px;
+      }
+
+      .navbar-nav .nav-link.active {
+        font-weight: 600;
+        text-decoration: underline;
       }
     </style>
   </head>
 
-  <body class="container">
+  <body>
     <!-- Navbar -->
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-body-secondary">
-        <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
           <a class="navbar-brand" href="{% url 'home' %}">Blog Project</a>
           <button
             class="navbar-toggler"
@@ -69,25 +87,31 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Menu -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a
-                  class="nav-link active"
+                  class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
                   aria-current="page"
                   href="{% url 'home' %}"
-                  >Home</a
                 >
+                  Home
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
               </li>
               {% if not request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link" href="{% url 'login' %}">
+                  <i class="bi bi-box-arrow-in-right"></i> Login
+                </a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link" href="{% url 'logout' %}">
+                  <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
               </li>
               {% endif %}
             </ul>
@@ -103,12 +127,12 @@
                 class="form-control me-2"
                 type="search"
                 name="q"
-                placeholder="Search Articles..."
+                placeholder="Search articles..."
                 aria-label="Search"
                 value="{{ request.GET.q|default:'' }}"
               />
-              <button class="btn btn-outline-success" type="submit">
-                Search
+              <button class="btn btn-light text-primary" type="submit">
+                <i class="bi bi-search"></i>
               </button>
             </form>
           </div>
@@ -117,13 +141,14 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mb-5">{% block content %}{% endblock %}</main>
+    <main class="container">{% block content %}{% endblock %}</main>
 
     <!-- Footer -->
     <footer>
       <div class="container">
         <p class="mb-0">
-          &copy; {{ year|default:2025 }} Blog Project | All Rights Reserved
+          &copy; {{ year|default:2025 }} <strong>Blog Project</strong> | All
+          Rights Reserved
         </p>
       </div>
     </footer>
