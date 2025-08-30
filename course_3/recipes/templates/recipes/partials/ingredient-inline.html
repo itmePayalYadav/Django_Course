@@ -1,6 +1,12 @@
-le
-<div>{{ object.name }} — {{ object.quantity }} {{ object.unit }}</div>
-{% empty %}
-<p class="text-muted">No ingredients added yet.</p>
+<div id="ingredient-{{ object.id }}">
+  {{ object.name }} — {{ object.quantity }} {{ object.unit }}
 
-<button class="btn btn-primary">Edit</button>
+  <button
+    class="btn btn-primary btn-sm"
+    hx-get="{{ object.get_hx_edit_url }}"
+    hx-target="#ingredient-{{ object.id }}"
+    hx-swap="outerHTML"
+  >
+    Edit
+  </button>
+</div>

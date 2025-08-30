@@ -20,13 +20,12 @@
           {% include 'recipes/partials/forms.html' %}
 
           <!-- Show existing ingredients -->
-          {% if object.ingredients.exists %}
           <h5 class="mt-4">Current Ingredients</h5>
           {% for ingredient in object.ingredients.all %} {% include
-          'recipes/partials/ingredient-inline.html' with object=ingredient %} {%
+          "recipes/partials/ingredient-inline.html" with object=ingredient %} {%
           empty %}
           <p class="text-muted">No ingredients added yet.</p>
-          {% endfor %} {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>

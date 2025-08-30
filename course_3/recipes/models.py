@@ -54,6 +54,13 @@ class RecipeIngredient(models.Model):
     def __str__(self):
         return f"{self.name} ({self.quantity} {self.unit})"
     
+    def get_hx_edit_url(self):
+        kwargs={
+            "slug": self.recipe.slug,
+            "id": self.id,
+        }
+        return reverse("recipe-ingredient-update-hx", kwargs=kwargs)
+    
     def convert_to_system(self, system="mks"):
         if self.quantity_as_float is None:
             return None

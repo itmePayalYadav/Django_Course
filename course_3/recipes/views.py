@@ -1,3 +1,4 @@
+from django.urls import reverse
 from .models import Recipe, RecipeIngredient
 from django.http import HttpResponse, Http404
 from .forms import RecipeForm, RecipeIngredientForm
@@ -62,35 +63,31 @@ def recipe_update_view(request, id=None):
     return render(request, "recipes/update.html", context)
 
 @login_required
-def recipe_ingredient_update_hx_view(request, slug):
+def recipe_ingredient_update_hx_view(request, slug, id=None):
     if not request.htmx:
-        return Http404
+        raise Http404
     
-    try:
-        parent_obj = Recipe.objects.get(slug=slug, user=request.user)
-    except:
-        parent_obj = None 
-        
-    if parent_obj is None:
-        return HttpResponse("Not Found.")
-    
+    parent_obj = get_object_or_404(Recipe, slug=slug, user=request.user)
+
     instance = None
-    if slug is not None:
-        try:
-            instance = RecipeIngredient.objects.get(recipe=parent_obj, slug=slug)
-        except:
-            parent_obj = None
-            
+    if id is not None:
+        instance = get_object_or_404(RecipeIngredient, recipe=parent_obj, id=id)
+
     form = RecipeIngredientForm(request.POST or None, instance=instance)
-    context = {
-        "form":form,
-        "object":instance
-    }
+
+    if instance:
+        url = instance.get_edit_url()  
+    else:
+        url = reverse("recipe-ingredient-update-hx", kwargs={"slug": slug, "id": 0})  
+
+    context = {"form": form, "object": instance, "url": url}
+
     if form.is_valid():
         new_obj = form.save(commit=False)
-        if instance is None:
+        if instance is None:  
             new_obj.recipe = parent_obj
         new_obj.save()
-        context['object'] = context
-        return render(request, "recipes/partials/ingredient-inline.html", context) 
-    return render(request, "recipes/partials/ingredient-form.html", context) 
+        context["object"] = new_obj
+        return render(request, "recipes/partials/ingredient-inline.html", context)
+
+    return render(request, "recipes/partials/ingredient-form.html", context)
