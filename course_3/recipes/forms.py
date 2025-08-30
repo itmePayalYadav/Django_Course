@@ -1,11 +1,10 @@
 from django import forms
-from .models import Recipe
+from .models import Recipe, RecipeIngredient
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ['name', 'description', 'directions']
-        
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control', 
@@ -22,3 +21,23 @@ class RecipeForm(forms.ModelForm):
                 'rows': 5
             }),
         }
+
+class RecipeIngredientForm(forms.ModelForm):
+    class Meta:
+        model = RecipeIngredient
+        fields = ['name', 'quantity', 'unit']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter ingredient name'
+            }),
+            'quantity': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter quantity'
+            }),
+            'unit': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter unit (e.g. grams, cups)'
+            }),
+        }
+    

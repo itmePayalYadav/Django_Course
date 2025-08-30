@@ -65,6 +65,21 @@
         font-weight: 600;
         text-decoration: underline;
       }
+
+      .htmx-indicator {
+        display: none;
+      }
+
+      .htmx-request .htmx-indicator {
+        display: inline;
+      }
+
+      .htmx-inverted-indicator {
+        display: inline;
+      }
+      .htmx-request .htmx-inverted-indicator {
+        display: none;
+      }
     </style>
   </head>
 
@@ -162,5 +177,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
   </body>
 </html>

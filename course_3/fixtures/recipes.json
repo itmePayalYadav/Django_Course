@@ -1,0 +1,198 @@
+[
+  {
+    "model": "recipes.recipe",
+    "pk": 14,
+    "fields": {
+      "user": 2,
+      "name": "Paneer Masala",
+      "slug": "paneer-masala",
+      "description": "A spicy and creamy paneer curry",
+      "directions": "1. Fry onions, 2. Add tomatoes, 3. Add spices, 4. Add paneer",
+      "created_at": "2025-08-30T07:16:30.258Z",
+      "updated_at": "2025-08-30T07:16:30.258Z",
+      "active": true
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 15,
+    "fields": {
+      "user": 2,
+      "name": "Plain Rice",
+      "slug": "plain-rice",
+      "description": "Simple boiled rice",
+      "directions": "1. Wash rice, 2. Boil water, 3. Cook rice",
+      "created_at": "2025-08-30T07:16:42.202Z",
+      "updated_at": "2025-08-30T10:52:20.885Z",
+      "active": true
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 21,
+    "fields": {
+      "recipe": 14,
+      "name": "tare jameen par",
+      "description": "Cottage cheese cubes",
+      "unit": "g",
+      "quantity": "200",
+      "quantity_as_float": 200.0,
+      "created_at": "2025-08-30T07:17:03.564Z",
+      "updated_at": "2025-08-30T07:21:12.746Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 22,
+    "fields": {
+      "recipe": 14,
+      "name": "Onion",
+      "description": "Chopped",
+      "unit": "pcs",
+      "quantity": "2",
+      "quantity_as_float": 2.0,
+      "created_at": "2025-08-30T07:17:03.573Z",
+      "updated_at": "2025-08-30T07:21:12.756Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 23,
+    "fields": {
+      "recipe": 14,
+      "name": "Tomato",
+      "description": "Pureed",
+      "unit": "pcs",
+      "quantity": "3",
+      "quantity_as_float": 3.0,
+      "created_at": "2025-08-30T07:17:03.581Z",
+      "updated_at": "2025-08-30T07:21:12.762Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 24,
+    "fields": {
+      "recipe": 14,
+      "name": "Green Chili",
+      "description": "Slit",
+      "unit": "pcs",
+      "quantity": "2",
+      "quantity_as_float": 2.0,
+      "created_at": "2025-08-30T07:17:03.589Z",
+      "updated_at": "2025-08-30T07:21:12.767Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 25,
+    "fields": {
+      "recipe": 14,
+      "name": "Ginger-Garlic Paste",
+      "description": "Fresh paste",
+      "unit": "tbsp",
+      "quantity": "1",
+      "quantity_as_float": 1.0,
+      "created_at": "2025-08-30T07:17:03.598Z",
+      "updated_at": "2025-08-30T07:21:12.772Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 26,
+    "fields": {
+      "recipe": 14,
+      "name": "Turmeric",
+      "description": "Powder",
+      "unit": "tsp",
+      "quantity": "0.5",
+      "quantity_as_float": 0.5,
+      "created_at": "2025-08-30T07:17:03.611Z",
+      "updated_at": "2025-08-30T07:21:12.779Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 27,
+    "fields": {
+      "recipe": 14,
+      "name": "Red Chili Powder",
+      "description": "Spicy",
+      "unit": "tsp",
+      "quantity": "1",
+      "quantity_as_float": 1.0,
+      "created_at": "2025-08-30T07:17:03.621Z",
+      "updated_at": "2025-08-30T07:21:12.784Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 28,
+    "fields": {
+      "recipe": 14,
+      "name": "Coriander Powder",
+      "description": "Ground",
+      "unit": "tsp",
+      "quantity": "1",
+      "quantity_as_float": 1.0,
+      "created_at": "2025-08-30T07:17:03.627Z",
+      "updated_at": "2025-08-30T07:21:12.789Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 29,
+    "fields": {
+      "recipe": 14,
+      "name": "Cream",
+      "description": "Fresh cream",
+      "unit": "tbsp",
+      "quantity": "2",
+      "quantity_as_float": 2.0,
+      "created_at": "2025-08-30T07:17:03.636Z",
+      "updated_at": "2025-08-30T07:21:12.794Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 30,
+    "fields": {
+      "recipe": 14,
+      "name": "Coriander Leaves",
+      "description": "Chopped",
+      "unit": "tbsp",
+      "quantity": "2",
+      "quantity_as_float": 2.0,
+      "created_at": "2025-08-30T07:17:03.643Z",
+      "updated_at": "2025-08-30T07:21:12.801Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 31,
+    "fields": {
+      "recipe": 15,
+      "name": "Rice",
+      "description": null,
+      "unit": "1 cups",
+      "quantity": "1",
+      "quantity_as_float": 1.0,
+      "created_at": "2025-08-30T10:16:39.026Z",
+      "updated_at": "2025-08-30T10:52:20.893Z"
+    }
+  },
+  {
+    "model": "recipes.recipeingredient",
+    "pk": 32,
+    "fields": {
+      "recipe": 15,
+      "name": "water",
+      "description": null,
+      "unit": "1 liter",
+      "quantity": "1",
+      "quantity_as_float": 1.0,
+      "created_at": "2025-08-30T10:20:33.732Z",
+      "updated_at": "2025-08-30T10:52:20.899Z"
+    }
+  }
+]

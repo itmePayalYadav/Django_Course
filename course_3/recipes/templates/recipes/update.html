@@ -1,4 +1,11 @@
 {% extends "layout/base.html" %} {% block content %}
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
@@ -10,49 +17,20 @@
 
         <!-- Body -->
         <div class="card-body p-4">
-          <form method="POST" autocomplete="off">
-            {% csrf_token %}
+          {% include 'recipes/partials/forms.html' %}
 
-            <!-- Error Message -->
-            {% if error %}
-            <div
-              class="alert alert-danger alert-dismissible fade show"
-              role="alert"
-            >
-              {{ error }}
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              ></button>
-            </div>
-            {% endif %}
-
-            <!-- Loop through form fields -->
-            {% for field in form %}
-            <div class="mb-3">
-              <label class="form-label fw-semibold">{{ field.label }}</label>
-              {{ field }} {% if field.errors %}
-              <div class="text-danger small">{{ field.errors|striptags }}</div>
-              {% endif %}
-            </div>
-            {% endfor %}
-
-            <!-- Footer -->
-            <div class="d-flex justify-content-end gap-2 mt-4">
-              <!-- Cancel Button (redirects without submitting) -->
-              <a href="{% url 'recipe-list' %}" class="btn btn-secondary">
-                Cancel
-              </a>
-
-              <!-- Save Button -->
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </form>
+          <!-- Show existing ingredients -->
+          {% if object.ingredients.exists %}
+          <h5 class="mt-4">Current Ingredients</h5>
+          {% for ingredient in object.ingredients.all %} {% include
+          'recipes/partials/ingredient-inline.html' with object=ingredient %} {%
+          empty %}
+          <p class="text-muted">No ingredients added yet.</p>
+          {% endfor %} {% endif %}
         </div>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock content %}

@@ -1,0 +1,35 @@
+<form
+  method="POST"
+  autocomplete="off"
+  hx-post="."
+  hx-swap="outerHTML"
+  hx-indicator=".htmx-indicator"
+>
+  {% csrf_token %}
+
+  <!-- Recipe Form Fields -->
+  {% for field in form %}
+  <div class="mb-3">
+    <label class="form-label fw-semibold">{{ field.label }}</label>
+    {{ field }} {% if field.errors %}
+    <div class="text-danger small">{{ field.errors|striptags }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+
+  <!-- Footer -->
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <a href="{% url 'recipe-list' %}" class="btn btn-secondary">Cancel</a>
+
+    <!-- This shows only during request -->
+    <div class="htmx-indicator text-primary fw-bold">
+      <i class="bi bi-arrow-repeat spinner-border spinner-border-sm"></i>
+      Loading...
+    </div>
+
+    <!-- This hides during request -->
+    <button class="htmx-inverted-indicator btn btn-primary" type="submit">
+      Save
+    </button>
+  </div>
+</form>

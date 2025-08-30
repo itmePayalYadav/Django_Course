@@ -1,5 +1,6 @@
 import pint
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 from .utils import number_str_to_float
 from django.contrib.auth.models import User
@@ -22,6 +23,13 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_ingredients_children(self):
+        print(self.ingredients.all())
+        return self.ingredients.all() 
+    
+    def get_hx_url(self):
+        return reverse("recipe-detail", kwargs={"slug": self.slug})
     
     def save(self, *args, **kwargs):
         if not self.slug:  
